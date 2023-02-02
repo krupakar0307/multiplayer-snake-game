@@ -8,15 +8,8 @@ pipeline {
             } 
             steps {
                 sh 'npm install'
-              stash 'snake'
+                // stash 'snake'
             }
         }
-//         stage(' Test') {
-//             agent { docker 'openjdk:8-jre' } 
-//             steps {
-//                 echo 'Hello, JDK'
-//                 sh 'java -version'
-//             }
-//         }
     }
 }
