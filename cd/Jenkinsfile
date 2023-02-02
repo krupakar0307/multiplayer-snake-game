@@ -2,7 +2,10 @@ pipeline {
     agent none 
     stages {
         stage('Build') {
-            agent { docker 'node:16' } 
+            agent { 
+                docker{
+                   image 'node:16' 
+            } 
             steps {
                 sh 'npm install'
               stash 'snake'
