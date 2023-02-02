@@ -1,4 +1,4 @@
-FROM node:16
+FROM node:19.4-bullseye-slim
 EXPOSE 3000
 WORKDIR /app
 COPY package.json .
