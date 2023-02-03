@@ -1,22 +1,41 @@
 pipeline {
   agent any
 
+    options {
+        skipDefaultCheckout(true)
+    }
   stages {
+
     stage('Build') {
+        agent {
+            docker {
+                image 'node:16'
+                reuseNode true
+            }
+        }
+        options {
+            skipDefaultCheckout(false)
+        }
       steps {
         echo 'Building...'
+        sh 'npm install'
       }
     }
-    stage('Test') {
-      steps {
-        echo 'Testing...'
-//         snykSecurity(
-//           snykInstallation: '<Your Snyk Installation Name>',
-//           snykTokenId: '<Your Snyk API Token ID>',
-//           // place other parameters here
-//         )
-      }
+    post {
+        always {
+            cleanWs()
+        }
     }
+    // stage('Test') {
+    //   steps {
+    //     echo 'Testing...'
+    //     snykSecurity(
+    //       snykInstallation: '<Your Snyk Installation Name>',
+    //       snykTokenId: '<Your Snyk API Token ID>',
+    //       // place other parameters here
+    //     )
+    //   }
+    // }
     stage('Deploy') {
       steps {
         echo 'Deploying...'
