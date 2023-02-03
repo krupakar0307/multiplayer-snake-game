@@ -21,11 +21,6 @@ pipeline {
         sh 'npm install'
       }
     }
-    post {
-        always {
-            cleanWs()
-        }
-    }
     // stage('Test') {
     //   steps {
     //     echo 'Testing...'
